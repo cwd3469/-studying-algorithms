@@ -1,0 +1,28 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            //me 
+            function solution(str1 , str2){
+                let answer;
+                let arr = str1.split(str2)
+                return arr.length - 1;
+            }
+            
+            let string1='COMPUTERPROGRAMMING'
+            let string2="P"
+            console.log(solution(string1 , string2));
+            
+            // 강의 
+            function solution(s, t){
+                let answer=s.split(t).length;
+                return answer-1;
+            }
+
+            console.log(solution2(string1 , string2));
+        </script>
+    </body>
+</html>

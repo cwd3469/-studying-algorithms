@@ -1,0 +1,71 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>문자열 압축</title>
+    </head>
+    <body>
+        <h1>문자열 압축</h1>
+        N개의 자연수가 입력되면 각 자연수의 자릿수의 합을 구하고, 
+        그 합이 최대인 자연수를 출력 하는 프로그램을 작성하세요. 
+        자릿수의 합이 같은 경우 원래 숫자가 큰 숫자를 답으로 합니다. 
+        만약 235 와 1234가 동시에 답이 될 수 있다면 1234를 답으로 출력해야 합니다.
+
+
+        1. txt에서 a의 모든 위치를 구하고 
+        2. txt에 알파벳에 위치 - a의 위치의 절대값 
+
+        <script>
+            //me 
+            function solution(arr , num){
+                let asewer = Number.MIN_SAFE_INTEGER;
+                let top = Number.MIN_SAFE_INTEGER;
+                let arr2 = arr.map((x,index)=> String(x).split('').map(k => Number(k)))
+                for (let i = 0; i < arr2.length; i++) {
+                    const element = arr2[i].reduce((pre , cur) => pre + cur , 0);
+                    let item = Number(arr2[i].toString().replace(/,/g,'')); 
+                    if(element >= top && item > asewer ){
+                        top = element;
+                        asewer = item
+                    }
+                }
+               return asewer
+                
+            };
+
+            function solution2(n, arr){
+                let answer, max=Number.MIN_SAFE_INTEGER;
+                for(let x of arr){
+                    let sum=0, tmp=x;
+                    //퍼센트로 나머지를 구하는데 여기서는 나머지가 1자리 수다 
+                    // 1자리수를 sum 더하고 tmp를 10으로 나누어 다음에는 나누어진 수 의 나머지를 구해서  tmp이 0이 될때까지 더해서 숫자의 합을 구한다. 
+                    
+                    while(tmp){
+                        console.log(tmp%10);
+                        sum+=(tmp%10);
+                        tmp=Math.floor(tmp/10);
+                    }
+
+                    if(sum>max){
+                        max=sum;
+                        answer=x;
+                    }
+                    else if(sum===max){
+                        if(x>answer) answer=x;
+                    }
+                }
+                return answer;
+            }
+        
+           
+  
+            
+           
+            let str=[128, 460, 603, 40, 521, 137, 123];
+            let n2 = 7
+            console.log(solution(str ,n2));
+            console.log(solution2(n2 ,str ));
+
+        </script>
+        
+    </body>
+</html>

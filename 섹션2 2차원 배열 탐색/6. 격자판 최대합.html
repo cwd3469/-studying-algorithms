@@ -1,0 +1,82 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>6. 격자판 최대합</title>
+    </head>
+    <body>
+        <h1>6. 격자판 최대합</h1>
+        <div>5*5 격자판에 아래롸 같이 숫자가 적혀있습니다.
+        N*N의 격자판이 주어지면 각 행의 합, 각 열의 합, 두 대각선의 합 중 가 장 큰 합을 출력합 니다.</div>
+        <script>
+            //me 
+            function solution(arr33){
+                let arrs = arr33;
+                let Num = arrs.length;
+                let column= Array.from({length:Num}, ()=>0);
+                let diagonal = Array.from({length:2}, ()=>0);
+                let row = [];
+                let answer;
+                for (let i = 0; i < Num; i++) {
+                    const element = arrs[i];
+                    const sumWithInitial = element.reduce((prev, cur) => prev + cur, 0);
+                    row.push(sumWithInitial);
+                    for (let n = 0; n < Num; n++) {
+                        column[n]+=element[n]
+                    }
+                    let math = Math.abs(i - 4)
+                    diagonal[0]+=element[i]
+                    diagonal[1]+=element[math]
+                }
+                const arr3 = [...row , ...column , ...diagonal]
+                answer = Math.max(...arr3); 
+                return answer;
+            };
+            
+            let arr33=[[10, 13, 10, 12, 15], 
+                     [12, 39, 30, 10, 11],
+                     [11, 25, 50, 53, 15],
+                     [19, 27, 29, 37, 27],
+                     [19, 13, 30, 13, 19]];
+
+             
+
+            console.log(solution( arr33));
+
+
+            function solution2(arr){  
+                // 가장 낮은 값
+                let answer=Number.MIN_SAFE_INTEGER;
+                // 행열 수 
+                let n=arr.length;
+                // 행의합과 열의합 
+                let sum1=sum2=0;
+                for(let i=0; i<n; i++){
+                    // 초기화 
+                    sum1=sum2=0;
+                    // 다 비교 하게 하기 
+                    for(let j=0; j<n; j++){
+                        // 같은 숫자 행에 같은 숫자번째 수 더하기 
+                        sum1+=arr[i][j];
+                        // 같은 숫자 열에 같은 숫자번째 수 더하기
+                        sum2+=arr[j][i];
+                    }
+                    // 정답은 열의 합과 행의 합 중에 가장 큰 값을 비교 하고 answer에 저장 
+                    answer=Math.max(answer, sum1, sum2);
+                }
+                // 그러면 남는건 가장 큰 값만 남는다. 
+
+                // 중복 코드를 줄이기 위해 같은 코드를 최기화해서 사용 
+                sum1=sum2=0;
+                for(let i=0; i<n; i++){
+                    sum1+=arr[i][i];
+                    sum2+=arr[i][n-i-1];
+                }  
+                answer=Math.max(answer, sum1, sum2); 
+                return answer;
+            }
+
+            console.log(solution2(arr33));
+            
+        </script>
+    </body>
+</html>

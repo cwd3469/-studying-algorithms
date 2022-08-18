@@ -1,0 +1,56 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>보이는 학생</title>
+    </head>
+    <body>
+        <h1>보이는 학생</h1>
+        <div>
+            N(1<=N<=100)개의 정수를 입력받아, 자신의 바로 앞 수보다 큰 수만 출력하는 프로그램을 작 성하세요.(첫 번째 수는 무조건 출력한다)
+
+        </div>
+        <script>
+            //me 
+            function solution(str){
+                let arr = str.split(' ').splice(1).map(x => Number(x))
+                let answer = []
+                answer.push(arr[0])
+                for (const x of arr) {
+                    if (answer[0] < x) {
+                        answer.unshift(x)
+                    }
+                }
+                
+                return answer.length;
+            }
+            
+            
+            let parmas='8 130 135 148 140 145 150 150 153'
+            console.log(solution(parmas));
+
+            
+            function solution2(arr){         
+                // 반환 값 카운터 
+                let answer=1;
+                // 기준이 되는 값
+                let max=arr[0];
+                // 반복문 
+                for(let i=1; i<arr.length; i++){
+                    // 조건문 기준값보다 arr index  값이 크면 
+                    if(arr[i]>max){
+                        // 카운터 값이 올라가고  
+                        answer++;
+                        // 기준 값이 큰값으로 교체된다.
+                        max=arr[i];
+                    }
+                }
+                return answer;
+            }
+
+            let arr=[130, 135, 148, 140, 145, 150, 150, 153];
+            console.log(solution2(arr));
+           
+            
+        </script>
+    </body>
+</html>

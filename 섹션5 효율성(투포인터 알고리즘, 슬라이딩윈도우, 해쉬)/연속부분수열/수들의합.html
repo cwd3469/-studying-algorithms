@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    N개의 수로 된 수열 A[1], A[2], …, A[N] 이 있다. 이 수열의 i번째 수부터 j번째 수까지의 합 A[i] + A[i+1] + … + A[j-1] + A[j]가 M이 되는 경우의 수를 구하는 프로그램을 작성하시오.
+
+
+    <script>
+         function solution(m, arr){
+                let answer=0;
+                console.log(arr);
+                let lt = 0;
+                let sum = 0;
+                for (let i = 0; i < arr.length; i++) {
+                    sum+=arr[i]
+                    if(sum === m) answer++
+                    while(sum >= m){
+                        sum-=arr[lt++];
+                        if(sum === m) answer++
+                    }
+                }
+                return answer;
+            }
+            const arr = [1 ,2 ,3 ,4 ,2 ,5 ,3 ,1 ,1, 2];
+            console.log(solution(5 , arr));
+    </script>
+</body>
+</html>

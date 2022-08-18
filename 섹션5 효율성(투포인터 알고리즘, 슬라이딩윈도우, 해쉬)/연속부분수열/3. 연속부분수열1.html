@@ -1,0 +1,75 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>연속 부분수열 1</title>
+    </head>
+    <body>
+        <h1>연속 부분수열 1</h1>
+        N개의 수로 이루어진 수열이 주어집니다.
+        이 수열에서 연속부분수열의 합이 특정숫자 M이 되는 경우가 몇 번 있는지 구하는 프로그램을 작성하세요.
+        만약 N=8, M=6이고 수열이 다음과 같다면
+        12131112
+        합이 6이 되는 연속부분수열은 {2, 1, 3}, {1, 3, 1, 1}, {3, 1, 1, 1}로 총 3가지입니다.
+        <script>
+            //me 
+            function solution(m , a2){
+                let asewer ;
+                const n = a2.length;
+                let cnt = 0;
+                for (let i = 0 ; i < n; i++) {
+                   let arr = [];    
+                   for (let p = 0; p < n - i; p++) {
+                    let red = arr.reduce((p,c) => p + c, 0);
+                    let el = a2[i+p];
+                    if(red === m){
+                        cnt++
+                    }
+                    arr.push(el)
+                   }
+                }
+               return cnt
+                
+            };
+           
+            function solution2(m, arr){
+                let answer=0;
+                // lt는 sum의 값이 
+                let lt=0;
+                // 번위내에 있는걸 축적해서 더한 값
+                let sum=0;
+                for(let rt=0; rt<arr.length; rt++){
+                    sum+=arr[rt];
+                    console.log(sum);
+                    if(sum===m){
+                        answer++;   
+                       
+                    } 
+                    
+                    // 크거나 같을때 앞에 더한 값은 순으로 빼야합니다. 
+                    // lt가 같이 때문에 같아도 빼야 합니다
+                    while(sum>=m){
+                        sum-=arr[lt++];
+                        
+                        if(sum===m){
+                            answer++;  
+
+                         
+                        }     
+                    }
+                }    
+                console.log(answer);    
+                return answer;
+            }
+            
+            const arr1 = 2;
+            const arr2 = [1,2,1,3,1,1,1,2];
+            console.log(solution(arr1 , arr2));
+            console.log(solution2(arr1 , arr2));
+            
+            // solution2(arr1 , arr2)
+        
+
+        </script>
+
+    </body>
+</html>

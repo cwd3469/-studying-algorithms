@@ -1,0 +1,84 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>6. 격자판 최대합</title>
+    </head>
+    <body>
+        <h1>6. 격자판 최대합</h1>
+        <div>지도 정보가 N*N 격자판에 주어집니다. 각 격자에는 그 지역의 높이가 쓰여있습니다.</div>
+        <h3 style="color:red;"> 각 격자 판의 숫자 중 자신의 상하좌우 숫자보다 큰 숫자는 봉우리 지역입니다.</h3>
+        <h2> 봉우리 지역이 몇 개 있는 지 알아내는 프로그램을 작성하세요.</h2>
+           <div> 격자의 가장자리는 0으로 초기화 되었다고 가정한다.</div>
+            <div>만약 N=5 이고, 격자판의 숫자가 다음과 같다면 봉우리의 개수는 10개입니다.</div>
+
+
+            <h5> # 같은 행이나 같은 열에서 +-1에 위치한 값들 끼리 비교 </h5> 
+            <h5> null 값은 0이다.</h5>
+
+        <script>
+            //me 
+            function solution(str){
+                let answer = [];
+                let arr = [];
+                let count = 0;
+                let N = str.length;
+                let Line = N * 3;
+                let foo=Number.MIN_SAFE_INTEGER;
+                for (let r = 0; r < N; r++) {
+                    for (let c = 0; c < N; c++) {
+                        const center =  str[r][c];
+                        let foo;
+                        const left = str[r-1] === undefined ? 0 : str[r-1][c];
+                        const right = str[r+1] === undefined ? 0 : str[r+1][c];
+                        const top = str[c-1] === undefined ? 0 : str[r][c-1];
+                        const bottom = str[c+1] === undefined ? 0 : str[r][c+1];
+                        foo = Math.max(center , left , right , top , bottom);
+                        arr.push(foo);
+                    }
+                }
+                
+                
+                return arr;
+            };
+
+            function solution2(arr){  
+                let answer=0;
+                let n=arr.length;
+                
+                let dx=[-1, 0, 1, 0];
+                let dy=[0, 1, 0, -1];
+
+                for(let i=0; i<n; i++){
+                    for(let j=0; j<n; j++){
+                        // 신호변수
+                        let flag=1;
+                        // 상하좌우와 가운데 값을 비교 해서 상하좌우가 가운데 값보다 큰게 있으면 브레이크 아니면 넘어가서 flag = 1이기 때문에 answer에 1 카운터 됨 
+                        for(let k=0; k<4; k++){
+                            let nx=i+dx[k];
+                            let ny=j+dy[k];
+                            if(nx>=0 && nx<n && ny>=0 && ny<n && arr[nx][ny]>=arr[i][j]){
+                                flag=0;
+                                break;
+                            }
+                        }
+                        if(flag) answer++;
+                    }
+                }  
+                  
+                return answer;
+            }
+
+            
+            let arr=[[5, 3, 7, 2, 3], 
+                     [3, 7, 1, 6, 1],
+                     [7, 2, 5, 3, 4],
+                     [4, 3, 6, 4, 1],
+                     [8, 7, 3, 5, 2]];
+
+             
+            console.log(solution2(arr));
+            console.log(solution( arr));
+
+        </script>
+    </body>
+</html>

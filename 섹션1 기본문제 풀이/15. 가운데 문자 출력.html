@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>15. 가운데 문자 출력</title>
+    </head>
+    <body>
+        <script>
+            //me 
+            function solution(str){
+                let answer = '';
+                let num = str.length / 2;
+                answer = str.length % 2 === 0 ? `${str[num-1]}${str[num]}` : str[Math.floor(num)];
+                return answer;
+            }
+            // 강좌
+            function solution2(str){
+                let answer = '';
+                let num = Math.floor(str.length / 2);
+                if(str.length%2 == 1) answer = str.substring(num , num+1);
+                else answer = str.substring(num-1 , num+1);
+                return answer;
+            }
+            // 강좌
+            function solution3(str){
+                let answer = '';
+                let num = Math.floor(str.length / 2);
+                if(str.length%2 == 1) answer = str.substr(num , 1);
+                else answer = str.substr(num-1 , 2);
+                return answer;
+            }
+            
+            let string1='qwewt'
+            console.log(solution3(string1));
+            console.log(solution(string1));
+            console.log(solution2(string1));
+
+        </script>
+    </body>
+</html>

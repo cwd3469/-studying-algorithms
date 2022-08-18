@@ -1,0 +1,47 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>문자열 압축</title>
+    </head>
+    <body>
+        <h1>문자열 압축</h1>
+        알파벳 대문자로 이루어진 문자열을 입력받아 같은 문자가 연속으로 반복되는 경우 반복되는 문자 바로 오른쪽에 반복 횟수를 표기하는 방법으로 문자열을 압축하는 프로그램을 작성하시 오. 단 반복횟수가 1인 경우 생략합니다.
+
+
+        1. txt에서 a의 모든 위치를 구하고 
+        2. txt에 알파벳에 위치 - a의 위치의 절대값 
+
+        <script>
+            //me 
+            function solution(txt){
+                let asewer = '';
+                let count = 1;
+                let arr = [];
+                for (let i = 0; i < txt.length; i++) {
+                    if (txt[i] === txt[i+1]) {
+                        count++
+                    }else{
+                        asewer+=txt[i]
+                        if(count > 1){
+                            asewer+=count
+                        }
+                        count = 1
+                    }
+                }
+              
+               return asewer
+                
+            };
+            
+        
+           
+  
+            
+           
+            let str='KKHSSSSSSSE';
+            console.log(solution(str));
+
+        </script>
+        
+    </body>
+</html>

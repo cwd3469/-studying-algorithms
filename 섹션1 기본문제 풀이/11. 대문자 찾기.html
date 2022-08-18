@@ -1,0 +1,49 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            //me 
+            function solution(str){
+                let answer;
+                let str1 = str.split('')
+                let str2 = str.toUpperCase().split('')
+                
+                answer = str1.filter((x , idx) =>{
+                    return str2.includes(x)
+                })
+                return answer.length;
+            }
+            
+            let string1='KoreaTimeGood'
+ 
+            console.log(solution(string1));
+            
+            // 강의 
+            function solution2(s, t){
+                let answer;
+                for (const x in object) {
+                    if (x == x.toLocaleLowerCase()) answer++
+                }
+                return answer;
+            }
+            console.log(solution2(string2));
+
+            // 강의2
+            function solution3(s, t){
+                let answer;
+                for (const x in object) {
+                    // 대문자 아스킷넘버 는 65 ~ 90 이다. 
+                    // 소문자 아스킷넘버 느 97 ~ 122 이다. 
+                    let num = x.charCodeAt();
+                    if(num >= 65 && num <= 90 ) answer++
+                }
+                return answer;
+            }
+
+            console.log(solution3(string1));
+        </script>
+    </body>
+</html>

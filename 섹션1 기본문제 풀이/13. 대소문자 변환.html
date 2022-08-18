@@ -1,0 +1,38 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            //me 
+            function solution(str){
+                let answer = '';
+                let arr = str.split(' ');
+                arr.shift();
+
+                for (let x = 0; x < arr.length; x++) {
+                    const element = arr[x];
+                    if(answer.length < element.length ) answer = element;
+                }
+                return answer;
+            }
+            //강의
+             function solution2(str){
+                let answer, max = Number.MIN_SAFE_INTEGER;
+                for (const x of str) {
+                    if(x.length > max){
+                        max = x.length;
+                        answer = x
+                    }
+                }
+                return answer;
+            }
+            
+            let string1='5 teacher time student beautiful good'
+            console.log(solution(string1));
+            console.log(solution2(string1));
+
+        </script>
+    </body>
+</html>
